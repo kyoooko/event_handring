@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello,vue.js</title>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- ◆A：インラインイベントハンドラ -->
+   <p>{{ counter }}</p>
+   <button v-on:click="counter++">Click1!</button>
+   <!-- ◆ B：メソッドイベントハンドラ -->
+   <!-- 引数がない場合はメソッド名()でなくメソッド名のみでいい -->
+   <button v-on:click="clickHandler">Click2!</button>
+   <!-- ◆ イベントオブジェクトの参照 -->
+   <button v-on:click="clickHandler2">Click3!</button>
+
+   <!-- ◆イベントハンドラに引数を渡す -->
+   <!-- 今回渡したいのは'Vue.js'-->
+   <button v-on:click="clickHandler3('Vue.js')">Click4!</button>
+   <p>{{ message }}</p>
+
+   <!-- ◆$event -->
+   <button v-on:click="clickHandler4($event, 'Vue.js')">Click5!</button>
+   <p>{{ message }}</p>
+
+   <hr>
+   <!-- ◆イベント修飾子(.once) -->
+   <!-- １回しかクリックできない -->
+   <button v-on:click.once="clickHandler5">Now</button>
+   <p>{{ message2 }}</p>
+
+   <!-- ◆キー修飾子 -->
+   <!-- キーコード２７はESCキー。エイリアスescでも書ける -->
+   <!-- <input type="text" v-on:keyup.27="clear" v-model="message"> -->
+   <!-- <input type="text" v-on:keyup.esc="clear" v-model="message"> -->
+   <!-- 条件を複数指定できる（escかスペースか↑） -->
+   <input type="text" v-on:keyup.esc.space.up="clear" v-model="message">
+   <p>{{ message }}</p>
+
+   <!-- ◆システム修飾子 -->
+   <!-- ctrl + cでクリア。Cは６７ -->
+   <input type="text" v-on:keyup.ctrl.67="clear" v-model="message">
+   <p>{{ message }}</p>
+   <!-- Click me!と書かれたdiv要素をshiftを押しながらクリックするとアラートが表示される -->
+   <div v-on:click.shift="clickHandler6">Click me!</div>
+
+   <!-- ◆v-on省略記法 -->
+   <!-- <button v-on:click="clickHandler7">Click6!</button> -->
+   <button @click="clickHandler7">Click6!</button>
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+  
+   
+
+
+
+
+
+
+   <!-- デバック用 -->
+   <!-- <pre>{{$data}}</pre> -->
+  </div>
+  <!-- ①vie.jsのCDNを先に読み込む。URLは公式ページから -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <!-- ②<script>下記のようにJSを別ファイルにしない場合はここにJSを書く</script> -->
+  <script src="js/main.js"></script>
+</body>
+</html>
